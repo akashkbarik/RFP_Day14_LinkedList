@@ -1,13 +1,24 @@
-public class MyNode<K> {
+public class MyNode<K> implements INode<K> {
     private K key;
-    private MyNode next;
+    private INode next;
 
-    public MyNode getNext() {
+    @Override
+    public K getKey() {
+        return key;
+    }
+
+    @Override
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+    public INode<K> getNext() {
         return next;
     }
 
-    public void setNext(MyNode next) {
-        this.next = next;
+    @Override
+    public void setNext(INode next) {
+        this.next = (MyNode<K>) next;
     }
 
     @Override
@@ -18,7 +29,7 @@ public class MyNode<K> {
                 '}';
     }
 
-    public MyNode(K key){
+    public MyNode(K key) {
         this.key = key;
         this.next = null;
     }

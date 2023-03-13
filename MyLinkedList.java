@@ -1,13 +1,35 @@
 public class MyLinkedList {
-    public static void main(String[] args) {
+    private INode head;
+    private INode tail;
 
-        MyNode<Integer> myFirstNode = new MyNode<>(30);
-        MyNode<Integer> mySecondNode = new MyNode<>(56);
-        MyNode<Integer> myThirdNode = new MyNode<>(70);
-        myFirstNode.setNext(mySecondNode);
-        mySecondNode.setNext(myThirdNode);
-        System.out.println(myFirstNode);
-        System.out.println(mySecondNode);
-        System.out.println(myThirdNode);
+    public MyLinkedList() {
+        this.head = null;
+        this.tail = null;
+
+    }
+
+    public void add(INode myNode) {
+        if (this.tail == null) {
+            this.tail = myNode;
+        }
+        if (this.head == null) {
+            this.head = myNode;
+        } else {
+            INode tempNode = this.head;
+            this.head = myNode;
+            this.head.setNext(tempNode);
+        }
+    }
+
+    public void printMyNode() {
+        StringBuffer myNodes = new StringBuffer("my Nodes: ");
+        INode tempNode = head;
+        while (tempNode.getNext() != null) {
+            myNodes.append(tempNode.getKey());
+            if (!tempNode.equals(tail)) myNodes.append("-->");
+            tempNode = tempNode.getNext();
+        }
+    myNodes.append(tempNode.getKey());
+        System.out.println(myNodes);
     }
 }
