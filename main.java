@@ -2,11 +2,18 @@
 
 public class main {
     public static void main (String[] args) {
-        MyLinkedList linkedlist = new MyLinkedList();
-        linkedlist.add(56);
-        linkedlist.add(30);
-        linkedlist.add(70);
-        linkedlist.print();
-        linkedlist.search(30);
+        MyLinkedList myLinkedList=new MyLinkedList();
+        MyLinkedList.Node head = myLinkedList.GetNode(56);
+        head.next = myLinkedList.GetNode(30);
+
+
+        System.out.print("Linked list before insertion: ");
+        myLinkedList.print(head);
+
+        int data =  40 , pos = 3;
+
+        head = myLinkedList.Insert(head, pos, data);
+        System.out.print("Linked list after insertion of 30 at position " +pos+" : ");
+        myLinkedList.print(head);
     }
 }

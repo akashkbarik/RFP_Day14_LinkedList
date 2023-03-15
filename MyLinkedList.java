@@ -38,29 +38,51 @@ public class MyLinkedList<L> {
             index++;
             temp = temp.next;
         }
-        return;
     }
 
-    public void print() {
+    public Node GetNode(int data) {
+        return new Node(data);
+    }
 
-        if (head == null) {
-            System.out.println("No elements to show...");
-            return;
+    public Node Insert(Node headNode, int position, int data) {
+        Node head = headNode;
+        if (position < 1)
+            System.out.print("Invalid position");
+
+        if (position == 1) {
+            Node newNode = new Node(data);
+            newNode.next = headNode;
+            head = newNode;
+        } else {
+            while (position-- != 0) {
+                if (position == 1) {
+                    Node newNode = GetNode(data);
+
+                    newNode.next = headNode.next;
+
+                    headNode.next = newNode;
+                    break;
+                }
+                headNode = headNode.next;
+            }
+            if (position != 1)
+                System.out.print("Position out of range");
         }
+        return head;
+    }
 
-        Node temp = head;
-        if (head.next == null) {
-            System.out.println(head.data);
-            return;
+    public void print(Node node) {
+
+        while (node != null) {
+            if (node.next != null) {
+                System.out.print(node.data + " ===> ");
+            } else {
+                System.out.println(node.data);
+            }
+            node = node.next;
+
         }
-        while (temp != null) {
-
-            if (temp.next != null)
-                System.out.print(temp.data + " ===> ");
-            else
-                System.out.println(temp.data);
-
-            temp = temp.next;
-        }
+        System.out.println();
     }
 }
+
