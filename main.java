@@ -8,7 +8,7 @@ public class main {
         myLinkedList.add(myFirstNode);
         myLinkedList.add(mySecondNode);
         myLinkedList.add(myThirdNode);
-        myLinkedList.printMyNode();
+        myLinkedList.print();
 
     }
 }
