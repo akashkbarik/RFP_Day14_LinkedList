@@ -7,7 +7,7 @@ public class main {
         linkedlist.print();
         linkedlist.add(70);
         linkedlist.print();
-        linkedlist.popFirst();
+        linkedlist.popLast();
         linkedlist.print();
     }
 }

@@ -3,12 +3,13 @@ public class MyLinkedList<L> {
 
     public class Node<L> {
         L data;
-        Node next;
+        Node<L> next;
 
         Node(L data) {
             this.data = data;
         }
     }
+
     public boolean add(L data) {
 
         Node<L> newNode = new Node(data);
@@ -23,12 +24,27 @@ public class MyLinkedList<L> {
 
         return true;
     }
-    public boolean popFirst() {
-        Node<L> temp = head;
-        head = temp.next;
 
-        return true;
+    public boolean popLast() {
+
+        if (head == null)
+            return false;
+        if (head.next == null) {
+            head = null;
+            return true;
+        }
+
+        Node<L> temp = head;
+
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+
+        temp.next = null;
+
+        return false;
     }
+
     public void print() {
 
         if (head == null) {
