@@ -1,57 +1,55 @@
 public class MyLinkedList<L> {
-     class Node {
-        int data;
-        Node nextNode;
+    Node<L> head;
 
-        public Node(int data) {
+    public class Node<L> {
+        L data;
+        Node next;
+
+        Node(L data) {
             this.data = data;
         }
     }
+    public boolean add(L data) {
 
-     Node GetNode(int data) {
-        return new Node(data);
-    }
-
-     Node Insert(Node headNode, int position, int data) {
-        Node head = headNode;
-        if (position < 1)
-            System.out.print("Invalid position");
-
-        if (position == 1) {
-            Node newNode = new Node(data);
-            newNode.nextNode = headNode;
+        Node<L> newNode = new Node(data);
+        if (head == null) {
             head = newNode;
-        } else {
-            while (position-- != 0) {
-                if (position == 1) {
-                    Node newNode = GetNode(data);
-
-                    newNode.nextNode = headNode.nextNode;
-
-                    headNode.nextNode = newNode;
-                    break;
-                }
-                headNode = headNode.nextNode;
-            }
-            if (position != 1)
-                System.out.print("Position out of range");
+            return true;
         }
-        return head;
+
+        Node<L> temp = head;
+        newNode.next = temp;
+        head = newNode;
+
+        return true;
     }
+    public boolean popFirst() {
+        Node<L> temp = head;
+        head = temp.next;
 
-    void PrintList(Node node) {
-        while (node != null) {
-            if(node.nextNode!=null) {
-                System.out.print(node.data + " ===> ");
-            }else {
-                System.out.println(node.data);
-            }
-            node = node.nextNode;
-//            if (node != null)
-//                System.out.println("");
+        return true;
+    }
+    public void print() {
 
+        if (head == null) {
+            System.out.println("No elements to show...");
+            return;
         }
-        System.out.println();
+
+        Node<L> temp = head;
+        if (head.next == null) {
+            System.out.println(head.data);
+            return;
+        }
+        while (temp != null) {
+
+            if (temp.next != null)
+                System.out.print(temp.data + " ===> ");
+            else
+                System.out.println(temp.data);
+
+            temp = temp.next;
+        }
     }
 
 }
