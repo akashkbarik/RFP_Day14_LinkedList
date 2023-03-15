@@ -1,60 +1,57 @@
 public class MyLinkedList<L> {
-    Node<L> head;
+     class Node {
+        int data;
+        Node nextNode;
 
-    public boolean add(L data) {
-
-        Node<L> newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-            return true;
-        }
-
-        Node<L> temp = head;
-        newNode.next = temp;
-        head = newNode;
-
-        return true;
-    }
-
-    public void print() {
-
-        if (head == null) {
-            System.out.println("No elements to show...");
-            return;
-        }
-
-        Node temp = head;
-        if (head.next == null) {
-            System.out.println(head.data);
-            return;
-        }
-        while (temp != null) {
-
-            if (temp.next != null)
-                System.out.print(temp.data + " ===> ");
-            else
-                System.out.println(temp.data);
-
-            temp = temp.next;
-        }
-    }
-
-    public class Node<L> {
-        L data;
-        Node<L> next;
-
-        Node(L data) {
+        public Node(int data) {
             this.data = data;
         }
     }
 
-    public static void main(String[] args) {
-        MyLinkedList linkedlist = new MyLinkedList();
-        linkedlist.add(70);
-        linkedlist.print();
-        linkedlist.add(30);
-        linkedlist.print();
-        linkedlist.add(56);
-        linkedlist.print();
+     Node GetNode(int data) {
+        return new Node(data);
     }
+
+     Node Insert(Node headNode, int position, int data) {
+        Node head = headNode;
+        if (position < 1)
+            System.out.print("Invalid position");
+
+        if (position == 1) {
+            Node newNode = new Node(data);
+            newNode.nextNode = headNode;
+            head = newNode;
+        } else {
+            while (position-- != 0) {
+                if (position == 1) {
+                    Node newNode = GetNode(data);
+
+                    newNode.nextNode = headNode.nextNode;
+
+                    headNode.nextNode = newNode;
+                    break;
+                }
+                headNode = headNode.nextNode;
+            }
+            if (position != 1)
+                System.out.print("Position out of range");
+        }
+        return head;
+    }
+
+    void PrintList(Node node) {
+        while (node != null) {
+            if(node.nextNode!=null) {
+                System.out.print(node.data + " ===> ");
+            }else {
+                System.out.println(node.data);
+            }
+            node = node.nextNode;
+//            if (node != null)
+//                System.out.println("");
+
+        }
+        System.out.println();
+    }
+
 }

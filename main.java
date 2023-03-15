@@ -1,14 +1,15 @@
 public class main {
     public static void main(String[] args) {
-
-        MyNode<Integer> myFirstNode = new MyNode<>(70);
-        MyNode<Integer> mySecondNode = new MyNode<>(30);
-        MyNode<Integer> myThirdNode = new MyNode<>(56);
         MyLinkedList myLinkedList=new MyLinkedList();
-        myLinkedList.add(myFirstNode);
-        myLinkedList.add(mySecondNode);
-        myLinkedList.add(myThirdNode);
-        myLinkedList.print();
+            MyLinkedList.Node head = myLinkedList.GetNode(56);
+            head.nextNode = myLinkedList.GetNode(70);
 
+            System.out.print("Linked list before insertion: ");
+            myLinkedList.PrintList(head);
+
+            int data = 30, pos = 2;
+            head = myLinkedList.Insert(head, pos, data);
+            System.out.print("Linked list after insertion of 30 at position " +pos+" : ");
+            myLinkedList.PrintList(head);
+        }
     }
-}
