@@ -12,7 +12,7 @@ public class MyLinkedList<L> {
 
     public boolean add(L data) {
 
-        Node<L> newNode = new Node(data);
+        Node<L> newNode = new Node<L>(data);
         if (head == null) {
             head = newNode;
             return true;
@@ -25,24 +25,20 @@ public class MyLinkedList<L> {
         return true;
     }
 
-    public boolean popLast() {
-
-        if (head == null)
-            return false;
-        if (head.next == null) {
-            head = null;
-            return true;
+    public void search(L data) {
+        if (head == null) {
+            return;
         }
-
+        int index = 0;
         Node<L> temp = head;
-
-        while (temp.next.next != null) {
+        while (temp != null) {
+            if (temp.data == data) {
+                return;
+            }
+            index++;
             temp = temp.next;
         }
-
-        temp.next = null;
-
-        return false;
+        return;
     }
 
     public void print() {
@@ -52,7 +48,7 @@ public class MyLinkedList<L> {
             return;
         }
 
-        Node<L> temp = head;
+        Node temp = head;
         if (head.next == null) {
             System.out.println(head.data);
             return;
@@ -67,5 +63,4 @@ public class MyLinkedList<L> {
             temp = temp.next;
         }
     }
-
 }
